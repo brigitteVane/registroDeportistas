@@ -15,7 +15,7 @@ public class principal {
     public static void main(String[] args) {
         registroCompetencia ventanaRegistro = new registroCompetencia();
         registroCompetencia registroCompetencia = null;
-        controladorVista controladorBienvenidos = new controladorVista(registroCompetencia);
+        controladorVista controladorVista = new controladorVista(registroCompetencia);
 
         controladorVista.iniciar();
         ventanaRegistro.setVisible(true);
