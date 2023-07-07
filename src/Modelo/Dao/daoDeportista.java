@@ -5,7 +5,6 @@
 package Modelo.Dao;
 
 import Modelo.deportista;
-import java.awt.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,7 +24,6 @@ public class daoDeportista {
     
     
     
-    
     public daoDeportista(){
         archivoDeportistas = new File("src/Modelo/archivos/Deportistas.txt");
         if(!archivoDeportistas.exists()){
@@ -40,6 +38,7 @@ public class daoDeportista {
         cargarDeportistas();
     }
     
+    //Colección
     public void agregarDeportista(String Id, String nombres, String apellidos) {
         if (!existeDeportista(Id)) {
             deportista deportista = new deportista(Id, nombres, apellidos);
@@ -49,6 +48,7 @@ public class daoDeportista {
             System.out.println("Ya existe un deportista con la misma identificación.");
         }
     }
+    
     
     private void cargarDeportistas() {
         try (BufferedReader reader = new BufferedReader(new FileReader(archivoDeportistas))) {
@@ -89,6 +89,24 @@ public class daoDeportista {
             }
         }
         return false;
+    }
+    
+    public ArrayList<deportista> obtenerDeportistas() {
+    return deportistas;
+    }
+    
+    public void eliminarDeportista(String Id) {
+        deportista deportistaAEliminar = null;
+        for (deportista deportista : deportistas) {
+            if (deportista.getId().equals(Id)) {
+                deportistaAEliminar = deportista;
+                break;
+            }
+        }
+        if (deportistaAEliminar != null) {
+            deportistas.remove(deportistaAEliminar);
+            guardarDeportistas();
+        }
     }
          
       
